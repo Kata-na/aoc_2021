@@ -24,4 +24,13 @@ for (i in 1:length(dt$V1)) {
   }
 }
 ans = depth * horz
-print(paste0('Answer: ', ans))  
+print(paste0('Answer: ', ans))
+
+##------------------------------------------------------------------
+## PART 2 Without LOOP
+##------------------------------------------------------------------
+dt <- dt %>%
+  .[, horizon := ifelse(V1 == 'forward', V2, 0)] %>%
+  .[, aim := cumsum(ifelse(V1 != 'forward', V2, 0)) * horizon]
+ans = sum(dt$horizon) * sum(dt$aim)
+print(paste0('Answer: ', ans))

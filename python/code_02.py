@@ -23,3 +23,10 @@ for val, dir in zip(num, mdir):
 ans = depth * horz
  
 print(f'Answer 2: {ans}')
+
+## PART 2  - WITHOUT LOOP (~11 times fatser)
+horizon, aim = num.copy(), num.copy()
+horizon[mdir != 'forward'] = 0
+aim[mdir == 'forward'] = 0
+ans2 = np.sum(horizon) * (horizon * np.cumsum(aim))
+print(f'Answer 2: {ans}')
