@@ -1,5 +1,5 @@
+t1 <- Sys.time()
 library(magrittr)
-library(data.table)
 
 lines <- readLines('../data/dt_05.txt')
 prep_coord_matrix <- function(x) {
@@ -13,7 +13,7 @@ coor2 <- gsub('^\\d+?,\\d+? -> (\\d+?,\\d+?)', '\\1', lines) %>%
   prep_coord_matrix(.)
 
 ##------------------------------------------------------------------
-## PART 2
+## PART 1
 ##------------------------------------------------------------------
 mask <- rowSums(coor1 == coor2) > 0
 movement_matrix <- matrix(0, max(coor2,coor1)+1, max(coor2,coor1)+1)
@@ -41,3 +41,4 @@ for (i in 1:dim(coor1)[1]) {
 }
 ans <- sum(movement_matrix > 1)
 print(paste('Answer 2: ', ans))       
+print(Sys.time() - t1)
