@@ -3,7 +3,7 @@ from sqlalchemy import event
 from sqlalchemy.engine import Engine
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from create_sqlitedb_file import Datatable_01, Datatable_02
+from create_sqlitedb_file import Datatable_01, Datatable_02, Datatable_03, Datatable_05
 
 from datatable import fread
 import numpy as np
@@ -45,3 +45,16 @@ for  val, dir in zip(num, mdir):
     db.session.commit()
     if i == len(mdir): break # Investigate why dtat gets duplicated
 
+##DATA 03
+m = open('./data/dt_03.txt').read().split('\n')
+for val in m:
+    new_input = Datatable_03(value=val)
+    db.session.add(new_input)
+    db.session.commit()
+
+##DATA 05
+m = open('./data/dt_05.txt').read().split('\n')
+for val in m:
+    new_input = Datatable_05(value=val)
+    db.session.add(new_input)
+    db.session.commit()

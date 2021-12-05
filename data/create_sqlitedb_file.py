@@ -29,6 +29,16 @@ class Datatable_02(db.Model):
     move_dir = db.Column(db.String(50))
     move_size = db.Column(db.Integer)
 
+class Datatable_03(db.Model):
+    __tablename__ = "aoc_data_03"
+    id = db.Column(db.Integer, primary_key=True)
+    value = db.Column(db.String(50))
+
+class Datatable_05(db.Model):
+    __tablename__ = "aoc_data_05"
+    id = db.Column(db.Integer, primary_key=True)
+    value = db.Column(db.String(50))
+
 if __name__ == "__main__":
     app.run(debug=True)
 
