@@ -12,7 +12,7 @@ binary_to_integer <- function(binary_vec){ # also R base func strtoi can be used
 
 ### PREPARING MATRIX
 dt <- fread('../data/dt_03.txt',  colClasses = 'character')
-m <- strsplit(dt$V1, split='') %>%
+m  <- strsplit(dt$V1, split='') %>%
   do.call(rbind, .) %>% as.matrix()
 storage.mode(m) <- "numeric"
 
@@ -33,7 +33,7 @@ rating_generator <- function(m, n, n_max, type){
     a <- (colSums(m)/obs >= 0.5)[n] %>% as.numeric(.)
   } else if (tolower(type) == 'co2 scrubber'){
     a <- (colSums(m)/obs < 0.5)[n] %>% as.numeric(.)
-  } else stop(paste0('Provided incorrec type: ', type))
+  } else stop(paste0('Iincorrect type provided: ', type))
   
   m <- m[which((m == a)[,n]), ]
   
