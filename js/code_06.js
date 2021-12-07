@@ -16,11 +16,11 @@ function fish_spawn (input, days) {
         placeholder.splice(x, 1, prior + 1)// replaces 1 element at index x with proir +1
     })
     for (let i = 1; i <= days; i++) {
-        // The shift() method removes the first element from 
-        // an array and returns that removed element
+        /* The shift() method removes the first element from 
+           an array and returns that removed element */
         let spawn = placeholder.shift() 
         placeholder.push(spawn) //adding new generation of fishes
-        // adding count of fishes which have spawn to 7 days till spawn
+        // adding count of fishes which have spawn to placeholder for 7 days till spawn
         placeholder.splice(6, 1, placeholder[6] + spawn) 
     }
     return placeholder.reduce((i, j) => i + j)
