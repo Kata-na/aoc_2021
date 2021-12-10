@@ -17,7 +17,7 @@ up[2:rows, ]        <- !down[1:(rows-1), ]
 
 ans <- sum(mat[right & left & up & down] + 1)
 print(glue::glue('Answer 1: {ans}'))
-
+print(Sys.time() - t1)
 ##------------------------------------------------------------------
 ## PART 2
 ##------------------------------------------------------------------
@@ -28,11 +28,15 @@ mat[!mask] <- 1
 generate_potential_points <- function(rp, cp) {
   potential_cols   <- c(rp, rp, rp - 1, rp + 1)
   potential_rows   <- c(cp -1, cp + 1, cp, cp)
+  ## Dropping invalid coordinates
+  mask <- potential_cols %in% c(0, cols+1) | potential_rows %in% c(0, rows+1) 
+  potential_rows <- potential_rows[!mask]
+  potential_cols <- potential_cols[!mask]
   potential_points <- paste0(potential_cols, '_', potential_rows)
-  return(potential_points[!grepl(glue::glue('^0|_0$|^{rows+1}|_{cols+1}$'), potential_points)])
+  return(potential_points)
 }
 
-### Recursive function to find basin of a provided low points
+### Recursive function to find basins of a provided low points
 low_point_basin_loopup <- function(mat, low_idx, basin_placeholder = NULL) {
 
   
