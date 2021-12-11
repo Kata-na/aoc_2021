@@ -21,7 +21,7 @@ print(Sys.time() - t1)
 ##------------------------------------------------------------------
 ## PART 2
 ##------------------------------------------------------------------
-mask <- mat == 9
+mask       <- mat == 9
 mat[mask]  <- 0
 mat[!mask] <- 1
 
@@ -37,7 +37,7 @@ generate_potential_points <- function(rp, cp) {
 }
 
 ### Recursive function to find basins of a provided low points
-low_point_basin_loopup <- function(mat, low_idx, basin_placeholder = NULL) {
+low_point_basin_lookup <- function(mat, low_idx, basin_placeholder = NULL) {
 
   
   if (is.null(basin_placeholder)) basin_placeholder <- c()
@@ -76,7 +76,7 @@ low_point_basin_loopup <- function(mat, low_idx, basin_placeholder = NULL) {
 }
 
 low_points_idx <- which(right & left & up & down, arr.ind=TRUE)
-basins         <- low_point_basin_loopup(mat, low_points_idx)
+basins         <- low_point_basin_lookup(mat, low_points_idx)
 ans            <- prod(sort(basins, decreasing = TRUE)[1:3])
 print(glue::glue('Answer 2: {ans}'))
 print(Sys.time() - t1)
