@@ -12,7 +12,6 @@ paper[idx + 1] <- TRUE
 
 fold_xy        <- (gsub('fold along .=(\\d+)$', '\\1', fold_info) %>% as.integer()) + 1
 names(fold_xy) <- gsub('fold along (.)=\\d+$', '\\1', fold_info)
-
 for (i in fold_xy) {
   fold_type <- names(fold_xy[fold_xy == i ])
   if (fold_type == 'x') {
@@ -27,3 +26,10 @@ for (i in fold_xy) {
 
 image(t(paper)[, nrow(paper):1], col = hcl.colors(12, 'viridis'))
 print(Sys.time() - t1)
+
+### Second option printing image to console
+paper[paper]          <- '#'
+paper[paper=='FALSE'] <-  ' '
+paper                 <- cbind(paper, rep('\n', nrow(paper)))
+cat('\n')
+cat(paste(t(paper), collapse = ''))
